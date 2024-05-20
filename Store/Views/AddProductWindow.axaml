@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Store.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Store.Views.AddProductWindow"
+        x:DataType="vm:AddProductWindowViewModel"
+        Title="AddProductWindow" 
+        Width="450" Height="450"
+        WindowStartupLocation="CenterScreen">
+        
+    <StackPanel>
+        <TextBox
+            Margin="10"
+            Watermark="Name"
+            Text="{Binding Name}"/>
+   
+        <TextBox 
+            Margin="10"
+            Watermark="Category Id" 
+            Text="{Binding Categoryid}"/>
+
+        <TextBox 
+            Margin="10"
+            Watermark="Count" 
+            Text="{Binding Count}"/>
+
+        <TextBox
+            Margin="10"
+            Watermark="Unit" 
+            Text="{Binding Unit}"/>
+
+        <TextBox
+            Margin="10"
+            Watermark="Provider" 
+            Text="{Binding Provider}"/>
+
+        <TextBox 
+            Margin="10"
+            Watermark="Cost" 
+            Text="{Binding Cost}"/>
+
+        <Button 
+            Margin="10"
+            Content="Ok" 
+            Command="{Binding OkCommand}"/>
+    </StackPanel>
+</Window>

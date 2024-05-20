@@ -1,0 +1,145 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Store.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Store.Views.BasketWindow"
+        x:DataType="vm:BasketWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Store"
+        WindowStartupLocation="CenterScreen">
+    <!--Main-->
+    <Grid 
+        RowDefinitions="50,10*,50"
+        ColumnDefinitions="300,*">
+        <!--Header-->
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right">
+            <!--Role-->
+            <TextBlock
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Text = "{Binding Role, StringFormat='Log at {0}'}"/>
+            <!--Role-->
+        </StackPanel>
+        <!--Header-->
+        
+        <!--DataOutput-->
+        <ListBox
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2"
+            BorderThickness="2"
+            BorderBrush="Black"
+            Margin=" 10 0 10 0"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedProductList}"
+            ItemsSource="{Binding Items}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <!--Item-->
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="2">
+                        <StackPanel
+                            Background="{Binding Color}"
+                            Orientation="Horizontal">
+                            <!--Image-->
+                            <Image
+                                Margin="10"
+                                Width="100"
+                                Height="100"
+                                Source="{Binding ProductImage}"/>
+                            <!--Image-->
+                            
+                            <!--TextField-->
+                            <StackPanel>
+                                <!--Name-->
+                                <TextBlock
+                                    Margin="0 5 0 5"
+                                    FontSize="20"
+                                    Text="{Binding Name}"/>
+                                <!--Name-->
+                                
+                                <!--Description-->
+                                <Border
+                                    BorderBrush="Black"
+                                    BorderThickness="1"
+                                    Width="400"
+                                    Height="60">
+                                    <ScrollViewer
+                                        VerticalScrollBarVisibility="Visible">
+                                        <TextBlock
+                                            Padding="5"
+                                            TextWrapping="Wrap"
+                                            Text="{Binding Description}"/>
+                                    </ScrollViewer>
+                                </Border>
+                                <!--Description-->
+                                
+                                <!--Provider-->
+                                <TextBlock
+                                    Margin="0 5 0 5"
+                                    FontSize="12">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}Производитель: {0}">
+                                            <Binding Path="Provider" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <!--Provider-->
+                                
+                                <!--Cost-->
+                                <TextBlock
+                                    Margin="0 5 0 5"
+                                    FontSize="20">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}Цена: {0}">
+                                            <Binding Path="Cost" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                                <!--Cost-->
+                            </StackPanel>
+                            <!--TextField-->
+                        </StackPanel>
+                    </Border>
+                    <!--Item-->
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--DataOutput-->
+        
+        <!--ErrorOutput-->
+        <ScrollViewer
+            Grid.Row="2" 
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            Width="700">
+            <TextBlock 
+                TextWrapping="Wrap"
+                Text="{Binding Error}"/>
+        </ScrollViewer>
+        <!--ErrorOutput-->
+        
+        <!--Input-->
+        <StackPanel
+            HorizontalAlignment="Right"
+            Orientation="Horizontal"
+            Grid.Row="2"
+            Grid.Column="1">
+            <!--DeleteButton-->
+            <Button
+                Margin="10"
+                Content="Delete"
+                Command="{Binding DeleteCommand}"/>
+            <!--DeleteButton-->
+        </StackPanel>
+        <!--Input-->
+    </Grid>
+    <!--Main-->
+</Window>

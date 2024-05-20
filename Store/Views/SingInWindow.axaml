@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Store.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        x:Class="Store.Views.SingInWindow"
+        x:DataType="vm:SingInWindowViewModel"
+        Title="SingInWindow" Width="450" Height="450"
+        WindowStartupLocation="CenterScreen">
+   <StackPanel
+       VerticalAlignment="Center">
+       <TextBox
+           Margin="10"
+           HorizontalAlignment="Center" 
+           Watermark="Code"
+           Text="{Binding Code}"/>
+       
+       <Button
+           HorizontalAlignment="Center"
+           Content="Sing In"
+           Command="{Binding OpenWindow}"/>
+   </StackPanel>
+</Window>
