@@ -222,6 +222,14 @@
                 Command="{Binding AddCommand}"/>
             <!--AddButton-->
             
+            <!--UpdateButton-->
+            <Button
+                Margin="10"
+                Content="Update"
+                IsVisible="{Binding IsAdmin}"
+                Command="{Binding UpdateCommand}"/>
+            <!--UpdateButton-->
+            
             <!--DeleteButton-->
             <Button
                 Margin="10"

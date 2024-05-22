@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+ <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:Store.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         x:Class="Store.Views.BasketWindow"
         x:DataType="vm:BasketWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Store"
+        Title="Basket"
         WindowStartupLocation="CenterScreen">
     <!--Main-->
     <Grid 
@@ -21,6 +21,7 @@
             HorizontalAlignment="Right">
             <!--Role-->
             <TextBlock
+                Margin="0 0 10 0"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Text = "{Binding Role, StringFormat='Log at {0}'}"/>

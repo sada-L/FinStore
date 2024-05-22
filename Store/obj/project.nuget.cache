@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/i61j3JO7EXpwKtI6BIgcf8jBgBL22oTuv++m7z+xoU7c2xbDHBzfcMIoggyBC5P4MCCjMefKklkDREXOQX1nA==",
+  "dgSpecHash": "1YtXPdmRPtmQIOdXJesjTLg7xcyI8LBbAkezXG5veLA4MEoOj/gw1pa8iTvmWYtUEh45xnDQu9bakkIjCCMUuw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sada\\RiderProjects\\Store\\Store\\Store.csproj",
   "expectedPackageFiles": [
@@ -55,6 +55,7 @@
     "C:\\Users\\sada\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\sada\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\npgsql\\8.0.3\\npgsql.8.0.3.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.4\\npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
@@ -75,6 +76,7 @@
     "C:\\Users\\sada\\.nuget\\packages\\system.composition.runtime\\8.0.0\\system.composition.runtime.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\system.composition.typedparts\\8.0.0\\system.composition.typedparts.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
+    "C:\\Users\\sada\\.nuget\\packages\\system.drawing.common\\8.0.5\\system.drawing.common.8.0.5.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\system.reactive\\5.0.0\\system.reactive.5.0.0.nupkg.sha512",

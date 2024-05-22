@@ -28,13 +28,13 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/sada/RiderProjects/Store/Store/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sada/RiderProjects/Store/Store/Views/AddProductWindow.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Users/sada/RiderProjects/Store/Store/Views/BasketWIndow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/sada/RiderProjects/Store/Store/Views/MainWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/sada/RiderProjects/Store/Store/Views/ProductFormWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/sada/RiderProjects/Store/Store/Views/SingInWindow.axaml]

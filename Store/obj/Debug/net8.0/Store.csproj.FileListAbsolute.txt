@@ -186,3 +186,7 @@ C:\Users\sada\RiderProjects\Store\Store\obj\Debug\net8.0\Store.pdb
 C:\Users\sada\RiderProjects\Store\Store\obj\Debug\net8.0\Store.csproj.Up2Date
 C:\Users\sada\RiderProjects\Store\Store\obj\Debug\net8.0\Store.genruntimeconfig.cache
 C:\Users\sada\RiderProjects\Store\Store\obj\Debug\net8.0\ref\Store.dll
+C:\Users\sada\RiderProjects\Store\Store\obj\Debug\net8.0\Store.sourcelink.json
+C:\Users\sada\RiderProjects\Store\Store\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\sada\RiderProjects\Store\Store\bin\Debug\net8.0\System.Drawing.Common.dll
+C:\Users\sada\RiderProjects\Store\Store\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll

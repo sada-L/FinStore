@@ -74,7 +74,7 @@ public partial class StoreContext : DbContext
             entity.Property(e => e.Description)
                 .HasColumnType("character varying")
                 .HasColumnName("description");
-            entity.Property(e => e.Imagepath)
+            entity.Property(e => e.ImageName)
                 .HasColumnType("character varying")
                 .HasColumnName("imagepath");
             entity.Property(e => e.Name)

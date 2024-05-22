@@ -50,6 +50,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\Microso
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\Microsoft.VisualBasic.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\Microsoft.Win32.Primitives.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\Microsoft.Win32.Registry.dll
+C:\Users\sada\.nuget\packages\microsoft.win32.systemevents\8.0.0\lib\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\mscorlib.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\netstandard.dll
 C:\Users\sada\.nuget\packages\npgsql\8.0.3\lib\net8.0\Npgsql.dll
@@ -93,6 +94,7 @@ C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.Diagnostics.TraceSource.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.Diagnostics.Tracing.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.dll
+C:\Users\sada\.nuget\packages\system.drawing.common\8.0.5\lib\net8.0\System.Drawing.Common.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.Drawing.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.Drawing.Primitives.dll
 C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Ref\8.0.3\ref\net8.0\System.Dynamic.Runtime.dll

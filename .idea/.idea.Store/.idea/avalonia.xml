@@ -3,7 +3,12 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="Store/Views/AddProductWindow.axaml" value="Store/Store.csproj" />
+        <entry key="Store/Views/BasketWIndow.axaml" value="Store/Store.csproj" />
         <entry key="Store/Views/MainWindow.axaml" value="Store/Store.csproj" />
+        <entry key="Store/Views/ProductFormWindow.axaml" value="Store/Store.csproj" />
+        <entry key="Store/Views/SingInWindow.axaml" value="Store/Store.csproj" />
+        <entry key="Store/Views/UpdateProductWindow.axaml" value="Store/Store.csproj" />
       </map>
     </option>
   </component>

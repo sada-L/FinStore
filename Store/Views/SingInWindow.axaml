@@ -6,19 +6,38 @@
         mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
         x:Class="Store.Views.SingInWindow"
         x:DataType="vm:SingInWindowViewModel"
-        Title="SingInWindow" Width="450" Height="450"
+        Title="SingIn" Width="450" Height="450"
         WindowStartupLocation="CenterScreen">
-   <StackPanel
-       VerticalAlignment="Center">
-       <TextBox
-           Margin="10"
-           HorizontalAlignment="Center" 
-           Watermark="Code"
-           Text="{Binding Code}"/>
-       
-       <Button
-           HorizontalAlignment="Center"
-           Content="Sing In"
-           Command="{Binding OpenWindow}"/>
-   </StackPanel>
+    
+    
+    <StackPanel>
+        <TextBox 
+            HorizontalAlignment="Center"
+            Watermark="Enter Code" 
+            Text="{Binding Code}"
+            Margin="10"/>
+        <Button 
+            HorizontalAlignment="Center"
+            Content="Login" 
+            Command="{Binding LoginCommand}"
+            Margin="10"/>
+        <TextBlock 
+            Text="{Binding ErrorMessage}" 
+            Foreground="Red"
+            Margin="10"/>
+        <StackPanel
+            Orientation="Vertical" 
+            IsVisible="{Binding ShowCaptcha}">
+            <Image
+                Source="{Binding CaptchaImage}" 
+                Margin="10"
+                Width="100"
+                Height="50"/>
+            <TextBox 
+                HorizontalAlignment="Center"
+                Watermark="Enter CAPTCHA" 
+                Text="{Binding EnteredCaptcha}" 
+                Margin="10"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

@@ -22,9 +22,9 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
             action(ViewModel!.ExitWindowShow.RegisterHandler(DoExitShow)));
     }
     
-    private async Task DoAddShowDialogAsync(InteractionContext<AddProductWindowViewModel, Product?> interactionContext)
+    private async Task DoAddShowDialogAsync(InteractionContext<ProductFormWindowViewModel, Product?> interactionContext)
     {
-        AddProductWindow addProductWindow = new AddProductWindow();
+        ProductFormWindow addProductWindow = new ProductFormWindow();
         addProductWindow.DataContext = interactionContext.Input;
 
         Product? product = await addProductWindow.ShowDialog<Product?>(this);

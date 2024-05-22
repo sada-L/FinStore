@@ -8,9 +8,9 @@ using Store.ViewModels;
 
 namespace Store.Views;
 
-public partial class AddProductWindow : ReactiveWindow<AddProductWindowViewModel>
+public partial class ProductFormWindow : ReactiveWindow<ProductFormWindowViewModel>
 {
-    public AddProductWindow()
+    public ProductFormWindow()
     {
         InitializeComponent();
         this.WhenActivated(d => d(ViewModel!.OkCommand.Subscribe(Close)));
