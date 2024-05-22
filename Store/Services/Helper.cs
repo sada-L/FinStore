@@ -24,6 +24,7 @@ public class Helper
     {
         Database.Products.Add(product);
         await Database.SaveChangesAsync();
+        Database = new StoreContext();
     }
 
     public static async Task UpdateProductAsync(Product product)

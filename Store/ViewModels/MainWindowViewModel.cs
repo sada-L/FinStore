@@ -5,7 +5,9 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Windows.Input;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
 using Store.Context;
@@ -26,12 +28,14 @@ public class MainWindowViewModel : ViewModelBase
     private Product? _selectedProductFilter;
     private Product? _selectedProductList;
     private bool _isAdmin;
-    private int _currentUnitCount;
+    private ObservableAsPropertyHelper<int> _currentUnitCount;
     private ObservableAsPropertyHelper<int> _unitCount;
     private string? _error;
     private string? _role;
     public MainWindowViewModel()
     {
+        RxApp.MainThreadScheduler.Schedule(LoadDataToWindow);
+        
         AddShowDialog = new Interaction<ProductFormWindowViewModel, Product?>();
 
         BasketShow = new Interaction<BasketWindowViewModel, Unit>();
@@ -39,7 +43,7 @@ public class MainWindowViewModel : ViewModelBase
         ExitWindowShow = new Interaction<SingInWindowViewModel, Unit>();
 
         var isValidObservable =
-            this.WhenAnyValue(x => x.SelectedProductList)
+            this.WhenAnyValue(vm => vm.SelectedProductList)
                 .Select( x => SelectedProductList != null);
 
         AddCommand = ReactiveCommand.CreateFromTask(async () =>
@@ -53,7 +57,6 @@ public class MainWindowViewModel : ViewModelBase
                 try
                 {
                     await Helper.AddProductAsync(product);
-                    Helper.Database = new StoreContext();
                     LoadDataToWindow();
                 }
                 catch (Exception e)
@@ -90,9 +93,9 @@ public class MainWindowViewModel : ViewModelBase
                 await Helper.DeleteProductAsync(SelectedProductList!.Productid);
                 LoadDataToWindow();
             }
-            catch (Exception e)
+            catch (DbUpdateException e)
             {
-                Error = e.ToString();
+                Error = "Невозможно удалить продукт из базы, пока он находиться в корзине";
             }
         },isValidObservable); 
         
@@ -118,21 +121,20 @@ public class MainWindowViewModel : ViewModelBase
             await BasketShow.Handle(basketWindowViewModel);
         });
         
-        this.WhenAnyValue(x => x.Items.Count)
+        this.WhenAnyValue(vm => vm.Items.Count)
             .Select(x => Query.ToList().Count)
-            .ToProperty(this, x => x.UnitCount, out _unitCount);
+            .ToProperty(this, vm => vm.UnitCount, out _unitCount);
         
-        this.WhenAnyValue(x => x.Items.Count)
-            .Select(x => Query.ToList().Count)
-            .ToProperty(this, x => x.UnitCount, out _unitCount);
+        this.WhenAnyValue(vm => vm.Items.Count)
+            .Select(x => Items.Count)
+            .ToProperty(this, vm => vm.CurrentUnitCount, out _currentUnitCount);
         
-        /*this.WhenAnyValue(
-                x => x.SearchText,
-                x => x.SelectedIndexSort,
-                x => x.SelectedProductFilter)
-            .Subscribe( x => SetList());*/
-        
-        RxApp.MainThreadScheduler.Schedule(LoadDataToWindow);
+        this.WhenAnyValue(
+                vm => vm.SearchText,
+                vm => vm.SelectedIndexSort,
+                vm => vm.SelectedProductFilter)
+            .Subscribe( x => SetList());
+       
     }
     public ICommand AddCommand { get; }
     public ICommand UpdateCommand { get; }
@@ -151,13 +153,9 @@ public class MainWindowViewModel : ViewModelBase
     public string Error
     {
         get => _error!;
-        set => this.RaiseAndSetIfChanged(ref _error, value);
+        set => _error = this.RaiseAndSetIfChanged(ref _error,value);
     }
-    public int CurrentUnitCount
-    {
-        get => _currentUnitCount;
-        set => this.RaiseAndSetIfChanged(ref _currentUnitCount, value);
-    }
+    public int CurrentUnitCount => _currentUnitCount.Value;
     public int UnitCount => _unitCount.Value;
     public bool IsAdmin
     {
@@ -209,15 +207,16 @@ public class MainWindowViewModel : ViewModelBase
         get => _query!;
         set => this.RaiseAndSetIfChanged(ref _query, value);
     }
-    private async void LoadDataToWindow()
+    private void LoadDataToWindow()
     {
         try
         {
             Query = Helper.Database.Products;
-            Items = new ObservableCollection<Product>(await Query.ToListAsync());
             ProductNames = new ObservableCollection<string>(Query.ToList().SelectMany( x => new []{x.Name, x.Provider}));
             ProductsProvider = new ObservableCollection<Product>(SetDataToFilterList(Query));
             SelectedProductFilter = ProductsProvider[0];
+            SelectedIndexFilter = 0;
+            Items = new ObservableCollection<Product>(Query.ToList());
         }
         catch (Exception e)
         {
@@ -241,33 +240,33 @@ public class MainWindowViewModel : ViewModelBase
         {
             Console.WriteLine(e);
             Error = e.ToString();
-            return null!;
+            throw;
         }
     }
-    /*private void SetList()
+    private void SetList()
     {
         try
         {
-            Items = new ObservableCollection<Product>(ListTransform());
-
-            CurrentUnitCount = Items.Count;
+            Items = new ObservableCollection<Product>(ListTransform() ?? Query.ToList());
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             Error = e.ToString();
         }
-    }*/
-    private List<Product> ListTransform()
+    }
+    private List<Product>? ListTransform()
     {
-        try 
+        try
         {
-            IQueryable<Product> products = SelectedIndexFilter switch
+            if (SelectedIndexFilter == -1 || SelectedProductFilter == null) return null;
+            
+            IEnumerable<Product> products = SelectedIndexFilter switch
             {
                 0 => Query,
                 _ => Query.Where(x => x.Provider == SelectedProductFilter!.Provider)
             };
-
+            
             products = !string.IsNullOrEmpty(SearchText)
                 ? products.Where(x => 
                     x.Name.ToLower().Contains(SearchText.ToLower()) || 

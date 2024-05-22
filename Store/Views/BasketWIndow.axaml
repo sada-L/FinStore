@@ -7,7 +7,7 @@
         x:Class="Store.Views.BasketWindow"
         x:DataType="vm:BasketWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Basket"
+        Title="Basket" Width="600" Height="600"
         WindowStartupLocation="CenterScreen">
     <!--Main-->
     <Grid 

@@ -7,7 +7,7 @@
         x:Class="Store.Views.ProductFormWindow"
         x:DataType="vm:ProductFormWindowViewModel"
         Title="Add Product" 
-        Width="450" Height="450"
+        Width="450" Height="515"
         WindowStartupLocation="CenterScreen">
         
     <StackPanel>
@@ -16,7 +16,6 @@
             Watermark="Name"
             Text="{Binding Name}"/>
         
-         
         <ComboBox
             Margin="10"
             SelectedItem="{Binding Category}"
@@ -48,7 +47,15 @@
             Watermark="Cost" 
             Text="{Binding Cost}"/>
         
-        <StackPanel>
+        <TextBox 
+            Margin="10"
+            Watermark="Description" 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Text="{Binding Description}"/>
+        
+        <StackPanel
+            Orientation="Horizontal">
             <Button 
                 Margin="10"
                 Content="Add Image"

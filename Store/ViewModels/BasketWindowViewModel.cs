@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Windows.Input;
 using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
@@ -21,7 +22,7 @@ public class BasketWindowViewModel : ViewModelBase
 
     public BasketWindowViewModel()
     {
-        LoadDataToWindow();
+        RxApp.MainThreadScheduler.Schedule(LoadDataToWindow);
 
         DeleteCommand = ReactiveCommand.Create(() =>
         {

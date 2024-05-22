@@ -108,7 +108,7 @@ public class SingInWindowViewModel : ViewModelBase
             {
                 GenerateCaptcha();
             }
-            await Task.Delay(2000);
+            await Task.Delay(10000);
         }
     }
 

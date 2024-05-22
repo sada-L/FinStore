@@ -22,7 +22,8 @@ public class ProductFormWindowViewModel : ViewModelBase
     private string _unit = string.Empty;
     private string _provider = string.Empty;
     private double? _cost = null;
-    private string? _imagepath;
+    private string? _imageName;
+    private string? _description;
    
     public ProductFormWindowViewModel()
     {
@@ -39,7 +40,7 @@ public class ProductFormWindowViewModel : ViewModelBase
             (name, category, count, unit, provider, cost) =>
                 !string.IsNullOrEmpty(name) &&
                 (category ?? _categories[0]) != null &&
-                count > 0 &&
+                count >= 0 &&
                 !string.IsNullOrEmpty(unit) &&
                 !string.IsNullOrEmpty(provider) &&
                 cost > 0);
@@ -53,6 +54,7 @@ public class ProductFormWindowViewModel : ViewModelBase
             Provider = Provider,
             Cost = Cost,
             ImageName = ImageName,
+            Description = Description
         },isValidObservable);
         
         AddImageCommand = ReactiveCommand.CreateFromTask(async () => await AddImage());
@@ -66,6 +68,7 @@ public class ProductFormWindowViewModel : ViewModelBase
         Provider = product.Provider;
         Cost = product.Cost;
         ImageName = product.ImageName!;
+        Description = product.Description!;
         _categories = new ObservableCollection<Category>(Helper.Database.Categories);
         
         var isValidObservable = this.WhenAnyValue(
@@ -92,6 +95,7 @@ public class ProductFormWindowViewModel : ViewModelBase
                 product.Provider = Provider;
                 product.Cost = Cost;
                 product.ImageName = ImageName;
+                product.Description = Description;
                 return product;
             }, 
             isValidObservable);
@@ -137,8 +141,13 @@ public class ProductFormWindowViewModel : ViewModelBase
     }
     public string ImageName
     {
-        get => _imagepath!;
-        set => this.RaiseAndSetIfChanged(ref _imagepath, value);
+        get => _imageName!;
+        set => this.RaiseAndSetIfChanged(ref _imageName, value);
+    }
+    public string Description
+    {
+        get => _description!;
+        set => this.RaiseAndSetIfChanged(ref _description,value);
     }
     private async Task AddImage()
     {
@@ -159,6 +168,19 @@ public class ProductFormWindowViewModel : ViewModelBase
             var fileName = Path.GetFileName(filePath);
             var destinationPath = Path.Combine(appDir, "Assets", fileName);
 
+            if (ImageName != null)
+            {
+                try
+                {
+                    File.Delete(Path.Combine(appDir, "Assets", ImageName));
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+            
             Directory.CreateDirectory(Path.Combine(appDir, "Assets"));
             File.Copy(filePath, destinationPath, true);
 
