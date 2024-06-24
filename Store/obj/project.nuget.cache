@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1YtXPdmRPtmQIOdXJesjTLg7xcyI8LBbAkezXG5veLA4MEoOj/gw1pa8iTvmWYtUEh45xnDQu9bakkIjCCMUuw==",
+  "dgSpecHash": "js71wCvyGiMBSQuPaSyehvmx+7BZZUp1syOmc4VW+2dil33CMzWtYpYEtvmVeh/obGqNeXjeXkBYXn9VBXq4iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sada\\RiderProjects\\Store\\Store\\Store.csproj",
+  "projectFilePath": "C:\\Users\\sada\\RiderProjects\\FinStore\\Store\\Store.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sada\\.nuget\\packages\\avalonia\\11.0.10\\avalonia.11.0.10.nupkg.sha512",
     "C:\\Users\\sada\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.0.2023020321\\avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",

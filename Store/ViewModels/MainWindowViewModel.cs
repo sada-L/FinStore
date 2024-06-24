@@ -5,12 +5,9 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Runtime.InteropServices.JavaScript;
 using System.Windows.Input;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using ReactiveUI;
-using Store.Context;
 using Store.Models;
 using Store.Services;
 
@@ -103,7 +100,9 @@ public class MainWindowViewModel : ViewModelBase
         {
             if (SelectedProductList!.IsAvailable)
             {
+                SelectedProductList.Count -= 1;
                 await Helper.AddProductToBasketAsync(SelectedProductList.Productid);
+                SetList();
             }
         });
 
@@ -153,7 +152,7 @@ public class MainWindowViewModel : ViewModelBase
     public string Error
     {
         get => _error!;
-        set => _error = this.RaiseAndSetIfChanged(ref _error,value);
+        set => this.RaiseAndSetIfChanged(ref _error,value);
     }
     public int CurrentUnitCount => _currentUnitCount.Value;
     public int UnitCount => _unitCount.Value;
@@ -266,12 +265,23 @@ public class MainWindowViewModel : ViewModelBase
                 0 => Query,
                 _ => Query.Where(x => x.Provider == SelectedProductFilter!.Provider)
             };
-            
-            products = !string.IsNullOrEmpty(SearchText)
-                ? products.Where(x => 
-                    x.Name.ToLower().Contains(SearchText.ToLower()) || 
-                    x.Provider.ToLower().Contains(SearchText.ToLower()))
-                : products;   
+
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                string[] search = SearchText.Split(", ");
+
+                if (search.Length == 1)
+                {
+                    products = products.Where(x => 
+                        x.Name.ToLower().Contains(search[0].ToLower()));
+                }
+                else
+                {
+                    products = products.Where(x =>
+                        x.Name.ToLower().Contains(search[0].ToLower()) &&
+                        x.Provider.ToLower().Contains(search[1].ToLower()));
+                }
+            }
         
             products = SelectedIndexSort switch
             {

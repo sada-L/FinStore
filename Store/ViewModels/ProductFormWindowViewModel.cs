@@ -7,6 +7,7 @@ using System.Reactive;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Avalonia.Controls;
+using Avalonia.Media.Imaging;
 using ReactiveUI;
 using Store.Models;
 using Store.Services;
@@ -24,6 +25,7 @@ public class ProductFormWindowViewModel : ViewModelBase
     private double? _cost = null;
     private string? _imageName;
     private string? _description;
+    private Bitmap? _image;
    
     public ProductFormWindowViewModel()
     {
@@ -81,7 +83,7 @@ public class ProductFormWindowViewModel : ViewModelBase
             (name, category, count, unit, provider, cost) =>
                 !string.IsNullOrEmpty(name) &&
                 (category ?? _categories![0]) != null &&
-                count > 0 &&
+                count >= 0 &&
                 !string.IsNullOrEmpty(unit) &&
                 !string.IsNullOrEmpty(provider) &&
                 cost > 0);
@@ -149,6 +151,11 @@ public class ProductFormWindowViewModel : ViewModelBase
         get => _description!;
         set => this.RaiseAndSetIfChanged(ref _description,value);
     }
+    public Bitmap Image
+    {
+        get => _image!;
+        set => this.RaiseAndSetIfChanged(ref _image, value);
+    }
     private async Task AddImage()
     {
         var openFileDialog = new OpenFileDialog
@@ -156,7 +163,7 @@ public class ProductFormWindowViewModel : ViewModelBase
             AllowMultiple = false,
             Filters = new List<FileDialogFilter>
             {
-                new FileDialogFilter { Name = "Image files", Extensions = new List<string> { "jpg", "jpeg", "png" } }
+                new FileDialogFilter { Name = "Image files aboba", Extensions = new List<string> { "jpg", "jpeg", "png" } }
             }
         };
         var result = await openFileDialog.ShowAsync(new Window());
@@ -167,8 +174,8 @@ public class ProductFormWindowViewModel : ViewModelBase
             var appDir = AppContext.BaseDirectory;
             var fileName = Path.GetFileName(filePath);
             var destinationPath = Path.Combine(appDir, "Assets", fileName);
-
-            if (ImageName != null)
+            Directory.CreateDirectory(Path.Combine(appDir, "Assets"));
+            if (ImageName != null) 
             {
                 try
                 {
@@ -180,11 +187,10 @@ public class ProductFormWindowViewModel : ViewModelBase
                     throw;
                 }
             }
-            
-            Directory.CreateDirectory(Path.Combine(appDir, "Assets"));
             File.Copy(filePath, destinationPath, true);
 
             ImageName = fileName;
+            Image = new Bitmap(Path.Combine(destinationPath));
         }
     }
 }

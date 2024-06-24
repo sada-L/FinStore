@@ -61,6 +61,8 @@
                 Content="Add Image"
                 Command="{Binding AddImageCommand}" />
             
+            <Image Width="50" Height="50" Source="{Binding Image}"/>
+            
             <TextBlock 
                 Text="{Binding ImageName}" 
                 Margin="10"/>

@@ -50,5 +50,6 @@ public class Helper
         var basket = new Basket { Productid = id };
         Database.Baskets.Add(basket);
         await Database.SaveChangesAsync();
+        Database = new StoreContext();
     }
 }

@@ -21,21 +21,21 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Store
-build_property.ProjectDir = C:\Users\sada\RiderProjects\Store\Store\
+build_property.ProjectDir = C:\Users\sada\RiderProjects\FinStore\Store\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/sada/RiderProjects/Store/Store/App.axaml]
+[C:/Users/sada/RiderProjects/FinStore/Store/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sada/RiderProjects/Store/Store/Views/BasketWIndow.axaml]
+[C:/Users/sada/RiderProjects/FinStore/Store/Views/BasketWIndow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sada/RiderProjects/Store/Store/Views/MainWindow.axaml]
+[C:/Users/sada/RiderProjects/FinStore/Store/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sada/RiderProjects/Store/Store/Views/ProductFormWindow.axaml]
+[C:/Users/sada/RiderProjects/FinStore/Store/Views/ProductFormWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/sada/RiderProjects/Store/Store/Views/SingInWindow.axaml]
+[C:/Users/sada/RiderProjects/FinStore/Store/Views/SingInWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
