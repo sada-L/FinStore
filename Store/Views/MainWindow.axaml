@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+        Width="1000"
+        MaxWidth="1000"
         x:Class="Store.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -116,69 +118,92 @@
                     <Border
                         BorderBrush="Black"
                         BorderThickness="2">
-                        <StackPanel
-                            Background="{Binding Color}"
-                            Orientation="Horizontal">
+                        <DockPanel
+                            Background="{Binding Color}">
                             <!--Image-->
-                            <Image
-                                Margin="10"
-                                Width="100"
-                                Height="100"
-                                Source="{Binding ProductImage}"/>
-                            <!--Image-->
+                            <Border
+                                DockPanel.Dock="Left"
+                                BorderThickness="2"
+                                BorderBrush="Black"
+                                Margin="10">
+                                <Image
+                                    Margin="10"
+                                    Width="100"
+                                    Height="100"
+                                    Source="{Binding ProductImage}"/>
+                            </Border>
+                           
                             
-                            <!--TextField-->
-                            <StackPanel>
-                                <!--Name-->
+                            <Border
+                                DockPanel.Dock="Right"
+                                HorizontalAlignment="Stretch"
+                                BorderThickness="2"
+                                BorderBrush="Black"
+                                Margin="10"
+                                Padding="10">
                                 <TextBlock
-                                    Margin="0 5 0 5"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    Margin="30 0 0 0"
                                     FontSize="20"
-                                    Text="{Binding Name}"/>
-                                <!--Name-->
-                                
-                                <!--Description-->
+                                    Text="{Binding Count , StringFormat='{}Количество: {0}'}"/>
+                            </Border>
+                            <!--Image-->
                                 <Border
-                                    BorderBrush="Black"
-                                    BorderThickness="1"
-                                    Width="400"
-                                    Height="60">
-                                    <ScrollViewer
-                                        VerticalScrollBarVisibility="Visible">
-                                        <TextBlock
-                                            Padding="5"
-                                            TextWrapping="Wrap"
-                                            Text="{Binding Description}"/>
-                                    </ScrollViewer>
-                                </Border>
-                                <!--Description-->
+                                    Margin="10"
+                                    Padding="10"
+                                    BorderThickness="2"
+                                    BorderBrush="Black">
+                                     <!--TextField-->
+                                <StackPanel>
+                                    <!--Name-->
+                                    <TextBlock
+                                        FontWeight="DemiBold"
+                                        Margin="0 5 0 5"
+                                        FontSize="20"
+                                        Text="{Binding Name}"/>
+                                    <!--Name-->
+                                    
+                                    <!--Description-->
+                                    <Border
+                                        HorizontalAlignment="Left"
+                                        Width="400"
+                                        Height="60">
+                                        <ScrollViewer
+                                            VerticalScrollBarVisibility="Visible">
+                                            <TextBlock
+                                                TextWrapping="Wrap"
+                                                Text="{Binding Description}"/>
+                                        </ScrollViewer>
+                                    </Border>
+                                    <!--Description-->
+                                    
+                                    <!--Provider-->
+                                    <TextBlock
+                                        Margin="0 5 0 5"
+                                        FontSize="12">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}Производитель: {0}">
+                                                <Binding Path="Provider" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <!--Provider-->
+                                    
+                                    <!--Cost-->
+                                    <TextBlock
+                                       
+                                        Margin="0 5 0 5"
+                                        FontSize="20"
+                                        Text="{Binding Cost, StringFormat='{}Цена: {0}' }"/>
+                                    <!--Cost-->
+                                </StackPanel>
+                                <!--TextField-->
                                 
-                                <!--Provider-->
-                                <TextBlock
-                                    Margin="0 5 0 5"
-                                    FontSize="12">
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}Производитель: {0}">
-                                            <Binding Path="Provider" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                                <!--Provider-->
-                                
-                                <!--Cost-->
-                                <TextBlock
-                                    Margin="0 5 0 5"
-                                    FontSize="20"
-                                    Text="{Binding Cost, StringFormat='{}Цена: {0}' }"/>
-                                <!--Cost-->
-                            </StackPanel>
-                            <!--TextField-->
-                            <TextBlock
-                                HorizontalAlignment="Right" 
-                                VerticalAlignment="Center"
-                                Margin="30 0 0 0"
-                                FontSize="20"
-                                Text="{Binding Count , StringFormat='{}Количество: {0}'}"/>
-                        </StackPanel>
+                            </Border>
+                           
+                            
+                        </DockPanel>
                     </Border>
                     <!--Item-->
                 </DataTemplate>
@@ -188,6 +213,7 @@
         
         <!--BuyButton-->
         <Button 
+            IsEnabled="{Binding IsUser}"
             Grid.Row="2" 
             Grid.Column="0" 
             Margin="10"
