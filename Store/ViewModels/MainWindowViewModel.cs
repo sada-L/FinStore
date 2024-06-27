@@ -146,7 +146,21 @@ public class MainWindowViewModel : ViewModelBase
     public Interaction<SingInWindowViewModel, Unit> ExitWindowShow { get; }
     public string Role
     {
-        get => IsAdmin ? "Admin" : "Guest";
+        get
+        {
+            if (IsUser)
+            {
+                return "User";
+            }
+            else if (IsAdmin)
+            {
+                return "Admin";
+            }
+            else
+            {
+                return "Guest";
+            }
+        }
         set => this.RaiseAndSetIfChanged(ref _role, value);
     }
     public string Error
@@ -269,17 +283,30 @@ public class MainWindowViewModel : ViewModelBase
             if (!string.IsNullOrEmpty(SearchText))
             {
                 string[] search = SearchText.Split(", ");
-
-                if (search.Length == 1)
+                switch (search.Length)
                 {
-                    products = products.Where(x => 
-                        x.Name.ToLower().Contains(search[0].ToLower()));
-                }
-                else
-                {
-                    products = products.Where(x =>
+                    case 1: 
+                        products = products.Where(x =>
+                            x.Name.ToLower().Contains(search[0].ToLower()));
+                        break;
+                    case 2:  
+                        products = products.Where(x =>
                         x.Name.ToLower().Contains(search[0].ToLower()) &&
                         x.Provider.ToLower().Contains(search[1].ToLower()));
+                        break;
+                    case 3:
+                        products = products.Where(x =>
+                            x.Name.ToLower().Contains(search[0].ToLower()) &&
+                            x.Provider.ToLower().Contains(search[1].ToLower()) &&
+                            x.Cost.ToString()!.ToLower().Contains(search[2].ToLower()));
+                        break;
+                    case 4:
+                        products = products.Where(x =>
+                            x.Name.ToLower().Contains(search[0].ToLower()) &&
+                            x.Provider.ToLower().Contains(search[1].ToLower()) &&
+                            x.Cost.ToString()!.ToLower().Contains(search[2].ToLower()) &&
+                            x.Count.ToString()!.ToLower().Contains(search[3].ToLower()));
+                        break;
                 }
             }
         
@@ -298,5 +325,10 @@ public class MainWindowViewModel : ViewModelBase
             Error = e.ToString();
             throw;
         }
+    }
+    public bool IsUser
+    {
+        get;
+        set;
     }
 }

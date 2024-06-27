@@ -19,13 +19,6 @@
             Grid.Column="1"
             Orientation="Horizontal"
             HorizontalAlignment="Right">
-            <!--Role-->
-            <TextBlock
-                Margin="0 0 10 0"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Text = "{Binding Role, StringFormat='Log at {0}'}"/>
-            <!--Role-->
         </StackPanel>
         <!--Header-->
         
