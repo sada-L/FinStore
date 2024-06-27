@@ -11,6 +11,11 @@
     
     
     <StackPanel>
+        <TextBox
+            HorizontalAlignment="Center"
+            Margin="10"
+            Watermark="Login"
+            Text="{Binding Login}"/>
         <TextBox 
             HorizontalAlignment="Center"
             Watermark="Enter Code" 

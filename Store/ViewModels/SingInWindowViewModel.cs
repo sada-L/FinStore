@@ -20,6 +20,7 @@ public class SingInWindowViewModel : ViewModelBase
     private bool _showCaptcha ;
     private string _errorMessage = string.Empty;
     private int _attemptCount;
+    private string _login = string.Empty;
     
     public SingInWindowViewModel()
     {
@@ -28,7 +29,12 @@ public class SingInWindowViewModel : ViewModelBase
         LoginCommand = ReactiveCommand.CreateFromTask(LoginAsync);
     }
     public Interaction<MainWindowViewModel, Unit> OpenWindowShow { get; }
-   
+
+    public string Login
+    {
+        get => _login;
+        set => this.RaiseAndSetIfChanged(ref _login, value);
+    }
     public string Code
     {
         get => _code;
@@ -88,7 +94,7 @@ public class SingInWindowViewModel : ViewModelBase
             }
         }
         
-        if (Code == "1234")
+        if (Code == "1234" && Login == "admin")
         {
             ErrorMessage = "Authorization successful!";
             _attemptCount = 0;
@@ -96,7 +102,20 @@ public class SingInWindowViewModel : ViewModelBase
             
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
 
+            mainWindowViewModel.IsUser = true;
             mainWindowViewModel.IsAdmin = true;
+            
+            await OpenWindowShow.Handle(mainWindowViewModel);
+        }
+        else if (Code == "1234" && Login == "user")
+        {
+            ErrorMessage = "Authorization successful!";
+            _attemptCount = 0;
+            ShowCaptcha = false;
+            
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel();
+            
+            mainWindowViewModel.IsUser = true;
             
             await OpenWindowShow.Handle(mainWindowViewModel);
         }
